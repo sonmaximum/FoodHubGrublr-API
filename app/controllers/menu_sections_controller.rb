@@ -17,7 +17,9 @@ class MenuSectionsController < OpenReadController
 
   # POST /menu_sections
   def create
-    @menu_section = MenuSection.new(menu_section_params)
+    @menu_section = current_user.restaurant.menu.menu_sections.build(
+      menu_section_params
+    )
 
     if @menu_section.save
       render json: @menu_section, status: :created
@@ -44,7 +46,7 @@ class MenuSectionsController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_menu_section
-    @menu_section = MenuSection.find(params[:id])
+    @menu_section = current_user.restaurant.menu.menu_sections.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.

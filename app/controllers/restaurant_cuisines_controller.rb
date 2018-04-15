@@ -17,7 +17,9 @@ class RestaurantCuisinesController < OpenReadController
 
   # POST /restaurant_cuisines
   def create
-    @restaurant_cuisine = RestaurantCuisine.new(restaurant_cuisine_params)
+    @restaurant_cuisine = current_user.restaurant.restaurant_cuisines.build(
+      restaurant_cuisine_params
+    )
 
     if @restaurant_cuisine.save
       render json: @restaurant_cuisine, status: :created
@@ -44,7 +46,9 @@ class RestaurantCuisinesController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_restaurant_cuisine
-    @restaurant_cuisine = RestaurantCuisine.find(params[:id])
+    @restaurant_cuisine = current_user.restaurant.restaurant_cuisines.find(
+      params[:id]
+    )
   end
 
   # Only allow a trusted parameter "white list" through.

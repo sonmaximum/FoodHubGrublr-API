@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 class MenuSerializer < ActiveModel::Serializer
-  attributes :id, :editable, :created_at
-  has_one :restaurant
+  attributes :id, :editable, :created_at, :restaurant_id
 
   def editable
-    scope == object.user
+    scope == object.restaurant.user
   end
 end

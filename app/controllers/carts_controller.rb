@@ -3,13 +3,6 @@
 class CartsController < ProtectedController
   before_action :set_cart, only: %i[show update destroy]
 
-  # GET /carts
-  def index
-    @carts = Cart.all
-
-    render json: @carts
-  end
-
   # GET /carts/1
   def show
     render json: @cart
@@ -17,7 +10,7 @@ class CartsController < ProtectedController
 
   # POST /carts
   def create
-    @cart = Cart.new(cart_params)
+    @cart = current_user.build_cart(cart_params)
 
     if @cart.save
       render json: @cart, status: :created
@@ -38,13 +31,15 @@ class CartsController < ProtectedController
   # DELETE /carts/1
   def destroy
     @cart.destroy
+
+    head :no_content
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_cart
-    @cart = Cart.find(params[:id])
+    @cart = Cart.where(user: current_user).find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MenuItemsController < OpenReadController
-  before_action :set_menu_item, only: %i[show update destroy]
+  before_action :set_menu_item, only: %i[update destroy]
 
   # GET /menu_items
   def index
@@ -12,12 +12,14 @@ class MenuItemsController < OpenReadController
 
   # GET /menu_items/1
   def show
-    render json: @menu_item
+    render json: MenuItem.find(params[:id])
   end
 
   # POST /menu_items
   def create
-    @menu_item = MenuItem.new(menu_item_params)
+    @menu_item = current_user.restaurant.menu.menu_sections.find(
+      :menu_section_id
+    ).menu_items.build(menu_item_params)
 
     if @menu_item.save
       render json: @menu_item, status: :created
@@ -44,13 +46,17 @@ class MenuItemsController < OpenReadController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_menu_item
-    @menu_item = MenuItem.find(params[:id])
+    @menu_item = MenuItem.where(
+      menu_section: current_user.restaurant.menu.menu_sections.find(
+        :menu_section_id
+      )
+    ).find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def menu_item_params
     params.require(:menu_item).permit(
-      :description, :price, :image, :menu_section_id
+      :description, :price, :image, :menu_section_id, :name
     )
   end
 end

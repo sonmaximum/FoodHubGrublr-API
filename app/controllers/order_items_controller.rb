@@ -17,7 +17,7 @@ class OrderItemsController < ProtectedController
 
   # POST /order_items
   def create
-    @order_item = OrderItem.new(order_item_params)
+    @order_item = current_user.cart.order_items.build(order_item_params)
 
     if @order_item.save
       render json: @order_item, status: :created
@@ -44,7 +44,7 @@ class OrderItemsController < ProtectedController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_order_item
-    @order_item = OrderItem.find(params[:id])
+    @order_item = current_user.cart.order_items.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
