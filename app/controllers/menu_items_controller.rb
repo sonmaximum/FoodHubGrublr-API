@@ -18,7 +18,7 @@ class MenuItemsController < OpenReadController
   # POST /menu_items
   def create
     @menu_item = current_user.restaurant.menu.menu_sections.find(
-      :menu_section_id
+      menu_item_params[:menu_section_id]
     ).menu_items.build(menu_item_params)
 
     if @menu_item.save
@@ -48,7 +48,7 @@ class MenuItemsController < OpenReadController
   def set_menu_item
     @menu_item = MenuItem.where(
       menu_section: current_user.restaurant.menu.menu_sections.find(
-        :menu_section_id
+        menu_item_params[:menu_section_id]
       )
     ).find(params[:id])
   end

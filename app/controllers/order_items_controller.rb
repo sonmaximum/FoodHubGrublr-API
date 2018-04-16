@@ -5,7 +5,7 @@ class OrderItemsController < ProtectedController
 
   # GET /order_items
   def index
-    @order_items = OrderItem.all
+    @order_items = current_user.cart.order_items.all
 
     render json: @order_items
   end

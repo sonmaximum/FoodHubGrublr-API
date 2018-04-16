@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RestaurantCuisinesController < OpenReadController
-  before_action :set_restaurant_cuisine, only: %i[show update destroy]
+  before_action :set_restaurant_cuisine, only: %i[update destroy]
 
   # GET /restaurant_cuisines
   def index
@@ -12,7 +12,7 @@ class RestaurantCuisinesController < OpenReadController
 
   # GET /restaurant_cuisines/1
   def show
-    render json: @restaurant_cuisine
+    render json: RestaurantCuisine.find(params[:id])
   end
 
   # POST /restaurant_cuisines

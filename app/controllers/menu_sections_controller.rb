@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MenuSectionsController < OpenReadController
-  before_action :set_menu_section, only: %i[show update destroy]
+  before_action :set_menu_section, only: %i[update destroy]
 
   # GET /menu_sections
   def index
@@ -12,7 +12,7 @@ class MenuSectionsController < OpenReadController
 
   # GET /menu_sections/1
   def show
-    render json: @menu_section
+    render json: MenuSection.find(params[:id])
   end
 
   # POST /menu_sections
