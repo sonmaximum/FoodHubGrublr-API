@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class OrderItemSerializer < ActiveModel::Serializer
-  attributes :id, :quantity, :editable, :created_at, :cart_id, :menu_item_id
+  attributes :id, :quantity, :editable, :created_at, :cart_id,
+             :menu_item_id, :comment
 
   def editable
     scope == object.cart.user

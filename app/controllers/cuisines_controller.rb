@@ -3,7 +3,7 @@
 class CuisinesController < OpenReadController
   # GET /cuisines
   def index
-    @cuisines = Cuisine.all
+    @cuisines = Cuisine.all.sort
 
     render json: @cuisines
   end

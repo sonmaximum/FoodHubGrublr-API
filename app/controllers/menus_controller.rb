@@ -5,7 +5,7 @@ class MenusController < OpenReadController
 
   # GET /menus
   def index
-    @menus = Menu.all
+    @menus = Menu.all.sort
 
     render json: @menus
   end

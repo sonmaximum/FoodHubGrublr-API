@@ -5,7 +5,7 @@ class MenuSectionsController < OpenReadController
 
   # GET /menu_sections
   def index
-    @menu_sections = MenuSection.all
+    @menu_sections = MenuSection.all.sort
 
     render json: @menu_sections
   end

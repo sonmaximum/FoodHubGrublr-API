@@ -5,7 +5,7 @@ class RestaurantCuisinesController < OpenReadController
 
   # GET /restaurant_cuisines
   def index
-    @restaurant_cuisines = RestaurantCuisine.all
+    @restaurant_cuisines = RestaurantCuisine.all.sort
 
     render json: @restaurant_cuisines
   end
