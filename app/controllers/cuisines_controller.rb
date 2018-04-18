@@ -10,6 +10,6 @@ class CuisinesController < OpenReadController
 
   # GET /cuisines/1
   def show
-    render json: Cuisine.find(params[:id])
+    render json: Cuisine.find(params[:id]), root: cuisines
   end
 end

@@ -12,7 +12,7 @@ class RestaurantsController < OpenReadController
 
   # GET /restaurants/1
   def show
-    render json: Restaurant.find(params[:id])
+    render json: Restaurant.find(params[:id]), root: :restaurant
   end
 
   # POST /restaurants

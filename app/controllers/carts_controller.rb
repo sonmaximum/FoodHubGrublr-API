@@ -3,9 +3,14 @@
 class CartsController < ProtectedController
   before_action :set_cart, only: %i[show update destroy]
 
+  # GET /carts/
+  def index
+    render json: Cart.where(user: current_user)
+  end
+
   # GET /carts/1
   def show
-    render json: @cart
+    render json: @cart, root: :cart
   end
 
   # POST /carts

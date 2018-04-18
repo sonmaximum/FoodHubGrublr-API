@@ -12,7 +12,7 @@ class MenusController < OpenReadController
 
   # GET /menus/1
   def show
-    render json: Menu.find(params[:id])
+    render json: Menu.find(params[:id]), root: :menu
   end
 
   # POST /menus

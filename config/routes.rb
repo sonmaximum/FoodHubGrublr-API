@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   resources :order_items, except: %i[new edit]
-  resources :carts, except: %i[new edit index]
+  resources :carts, except: %i[new edit]
   resources :menu_items, except: %i[new edit]
   resources :menu_sections, except: %i[new edit]
   resources :menus, except: %i[new edit]

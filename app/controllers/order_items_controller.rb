@@ -7,12 +7,12 @@ class OrderItemsController < ProtectedController
   def index
     @order_items = current_user.cart.order_items.all.sort
 
-    render json: @order_items
+    render json: @order_items, root: :order_items
   end
 
   # GET /order_items/1
   def show
-    render json: @order_item
+    render json: @order_item, root: :order_item
   end
 
   # POST /order_items
