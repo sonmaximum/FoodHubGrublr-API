@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :restaurant_cuisines, except: %i[new edit]
   resources :cuisines, only: %i[index show]
   resources :restaurants, except: %i[new edit]
+  resources :charges, only: :create
   # RESTful routes
   resources :examples, except: %i[new edit]
   resources :users, only: %i[index show]
