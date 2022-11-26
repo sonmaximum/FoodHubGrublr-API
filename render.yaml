@@ -31,3 +31,4 @@ services:
 databases: # Render PostgreSQL database
   - name: postgresql-amorphous-68510
     ipAllowList: [] # only allow internal connections
+    plan: free # optional; defaults to starter
